@@ -14,6 +14,9 @@ resource "aws_instance" "geth_node" {
   }
 
   vpc_security_group_ids = [aws_security_group.geth_sg.id]
+
+depends_on = [aws_security_group.geth_sg]
+
 }
 
 resource "aws_security_group" "geth_sg" {
@@ -23,14 +26,14 @@ resource "aws_security_group" "geth_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["YOUR_IP/32"]
+    cidr_blocks = ["102.89.34.63/32"]
   }
 
   ingress {
     from_port   = 8545
     to_port     = 8545
     protocol    = "tcp"
-    cidr_blocks = ["YOUR_IP/32"]
+    cidr_blocks = ["102.89.34.63/32"]
   }
 
   egress {
